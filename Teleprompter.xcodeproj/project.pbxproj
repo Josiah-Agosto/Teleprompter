@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD8DDE252252420100E2F7E6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DDE242252420100E2F7E6 /* HomeViewController.swift */; };
 		BDAB5CDA2241386D0021FAA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CD92241386D0021FAA1 /* AppDelegate.swift */; };
 		BDAB5CDC2241386D0021FAA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CDB2241386D0021FAA1 /* ViewController.swift */; };
 		BDAB5CDF2241386D0021FAA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDAB5CDD2241386D0021FAA1 /* Main.storyboard */; };
 		BDAB5CE12241386F0021FAA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDAB5CE02241386F0021FAA1 /* Assets.xcassets */; };
 		BDAB5CE42241386F0021FAA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDAB5CE22241386F0021FAA1 /* LaunchScreen.storyboard */; };
+		BDAB5CEC224143B40021FAA1 /* mainScreenCustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CEB224143B40021FAA1 /* mainScreenCustomSegue.swift */; };
+		BDAB5CF12241576B0021FAA1 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CF02241576B0021FAA1 /* SecondViewController.swift */; };
+		BDAB5CF32241A87A0021FAA1 /* LastViewContrroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CF22241A87A0021FAA1 /* LastViewContrroller.swift */; };
+		BDAD5C9E2257937F00FF9BE2 /* audioDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BDAD5C9C2257937F00FF9BE2 /* audioDataModel.xcdatamodeld */; };
+		BDAD5CA122579FD800FF9BE2 /* ContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD5C9F22579FD800FF9BE2 /* ContentViewCell.swift */; };
+		BDAD5CA222579FD800FF9BE2 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDAD5CA022579FD800FF9BE2 /* CustomCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD8DDE242252420100E2F7E6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		BDAB5CD62241386D0021FAA1 /* Teleprompter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teleprompter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDAB5CD92241386D0021FAA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDAB5CDB2241386D0021FAA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +30,12 @@
 		BDAB5CE02241386F0021FAA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDAB5CE32241386F0021FAA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BDAB5CE52241386F0021FAA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDAB5CEB224143B40021FAA1 /* mainScreenCustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainScreenCustomSegue.swift; sourceTree = "<group>"; };
+		BDAB5CF02241576B0021FAA1 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		BDAB5CF22241A87A0021FAA1 /* LastViewContrroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewContrroller.swift; sourceTree = "<group>"; };
+		BDAD5C9D2257937F00FF9BE2 /* audioDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = audioDataModel.xcdatamodel; sourceTree = "<group>"; };
+		BDAD5C9F22579FD800FF9BE2 /* ContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewCell.swift; sourceTree = "<group>"; };
+		BDAD5CA022579FD800FF9BE2 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +69,44 @@
 			isa = PBXGroup;
 			children = (
 				BDAB5CD92241386D0021FAA1 /* AppDelegate.swift */,
-				BDAB5CDB2241386D0021FAA1 /* ViewController.swift */,
-				BDAB5CDD2241386D0021FAA1 /* Main.storyboard */,
+				BDAB5CED224143D90021FAA1 /* Models */,
+				BDAB5CEE224143E10021FAA1 /* Views */,
+				BDAB5CEF224143E70021FAA1 /* Controllers */,
 				BDAB5CE02241386F0021FAA1 /* Assets.xcassets */,
 				BDAB5CE22241386F0021FAA1 /* LaunchScreen.storyboard */,
 				BDAB5CE52241386F0021FAA1 /* Info.plist */,
 			);
 			path = Teleprompter;
+			sourceTree = "<group>";
+		};
+		BDAB5CED224143D90021FAA1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BDAD5C9F22579FD800FF9BE2 /* ContentViewCell.swift */,
+				BDAD5CA022579FD800FF9BE2 /* CustomCell.xib */,
+				BDAD5C9C2257937F00FF9BE2 /* audioDataModel.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BDAB5CEE224143E10021FAA1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BDAB5CDD2241386D0021FAA1 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BDAB5CEF224143E70021FAA1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BDAB5CEB224143B40021FAA1 /* mainScreenCustomSegue.swift */,
+				BD8DDE242252420100E2F7E6 /* HomeViewController.swift */,
+				BDAB5CDB2241386D0021FAA1 /* ViewController.swift */,
+				BDAB5CF02241576B0021FAA1 /* SecondViewController.swift */,
+				BDAB5CF22241A87A0021FAA1 /* LastViewContrroller.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +169,7 @@
 			files = (
 				BDAB5CE42241386F0021FAA1 /* LaunchScreen.storyboard in Resources */,
 				BDAB5CE12241386F0021FAA1 /* Assets.xcassets in Resources */,
+				BDAD5CA222579FD800FF9BE2 /* CustomCell.xib in Resources */,
 				BDAB5CDF2241386D0021FAA1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,7 +181,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDAD5C9E2257937F00FF9BE2 /* audioDataModel.xcdatamodeld in Sources */,
+				BDAB5CF12241576B0021FAA1 /* SecondViewController.swift in Sources */,
+				BDAD5CA122579FD800FF9BE2 /* ContentViewCell.swift in Sources */,
 				BDAB5CDC2241386D0021FAA1 /* ViewController.swift in Sources */,
+				BDAB5CF32241A87A0021FAA1 /* LastViewContrroller.swift in Sources */,
+				BDAB5CEC224143B40021FAA1 /* mainScreenCustomSegue.swift in Sources */,
+				BD8DDE252252420100E2F7E6 /* HomeViewController.swift in Sources */,
 				BDAB5CDA2241386D0021FAA1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +343,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Josiah-Agosto.Teleprompter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -308,7 +360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Josiah-Agosto.Teleprompter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -334,6 +386,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BDAD5C9C2257937F00FF9BE2 /* audioDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BDAD5C9D2257937F00FF9BE2 /* audioDataModel.xcdatamodel */,
+			);
+			currentVersion = BDAD5C9D2257937F00FF9BE2 /* audioDataModel.xcdatamodel */;
+			path = audioDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BDAB5CCE2241386D0021FAA1 /* Project object */;
 }
