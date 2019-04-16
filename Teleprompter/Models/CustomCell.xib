@@ -37,32 +37,26 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZs-kL-9w0">
-                        <rect key="frame" x="68.5" y="68.5" width="63" height="63"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="63" id="LBr-Xw-nzD"/>
-                            <constraint firstAttribute="width" constant="63" id="c2E-Cw-AkW"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="25"/>
-                        <state key="normal" title="Play">
-                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                        <connections>
-                            <action selector="playPauseButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Jxs-Jy-w0e"/>
-                        </connections>
-                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xt9-W5-yeB">
+                        <rect key="frame" x="78" y="78" width="45" height="45"/>
+                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="xt9-W5-yeB" secondAttribute="trailing" constant="77" id="EYg-9P-BDP"/>
                 <constraint firstAttribute="bottom" secondItem="egj-jE-MQ1" secondAttribute="bottom" constant="170" id="GSq-hD-tFV"/>
+                <constraint firstItem="xt9-W5-yeB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="78" id="J4U-Zg-MyJ"/>
                 <constraint firstAttribute="trailing" secondItem="egj-jE-MQ1" secondAttribute="trailing" id="KGo-LW-BZp"/>
-                <constraint firstItem="tZs-kL-9w0" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="QU6-nV-xG9"/>
+                <constraint firstAttribute="bottom" secondItem="xt9-W5-yeB" secondAttribute="bottom" constant="77" id="ZHt-XF-eAC"/>
                 <constraint firstItem="zCP-q2-7lX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bOz-Df-nNV"/>
-                <constraint firstItem="tZs-kL-9w0" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="dTj-ed-6VS"/>
                 <constraint firstItem="egj-jE-MQ1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eeH-z3-N6f"/>
                 <constraint firstItem="egj-jE-MQ1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ihF-ss-uEc"/>
                 <constraint firstItem="zCP-q2-7lX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="179" id="isb-zv-B5D"/>
+                <constraint firstItem="xt9-W5-yeB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="78" id="qhM-zf-Qlf"/>
                 <constraint firstAttribute="bottom" secondItem="zCP-q2-7lX" secondAttribute="bottom" id="uFn-Tt-Rbf"/>
                 <constraint firstAttribute="trailing" secondItem="zCP-q2-7lX" secondAttribute="trailing" id="zIY-d5-Vh1"/>
             </constraints>
@@ -71,7 +65,6 @@
             <connections>
                 <outlet property="dateCreatedLabel" destination="zCP-q2-7lX" id="MDr-fk-dnV"/>
                 <outlet property="fileNameLabel" destination="egj-jE-MQ1" id="ou5-GM-pPQ"/>
-                <outlet property="playPauseButtonOutlet" destination="tZs-kL-9w0" id="fw9-n5-zZu"/>
             </connections>
             <point key="canvasLocation" x="257.60000000000002" y="221.28935532233885"/>
         </collectionViewCell>

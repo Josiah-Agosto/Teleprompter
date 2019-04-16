@@ -47,7 +47,6 @@ class LastViewController: UIViewController {
     // Delegates
     private var avSession: AVAudioSession!
     private var avRecorder: AVAudioRecorder!
-    private var avPlayer: AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +63,7 @@ class LastViewController: UIViewController {
     
     
     private func configure() {
-        guard let directoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first else {
+        guard let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             let alertMessage = UIAlertController(title: "Error", message: "Failed to get Document Directory for recording Audio. Please try again Later.", preferredStyle: .alert)
             alertMessage.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
             present(alertMessage, animated: true, completion: nil)
@@ -84,7 +83,6 @@ class LastViewController: UIViewController {
             ]
             avRecorder = try AVAudioRecorder(url: audioFileURL, settings: settings)
             avRecorder.delegate = self
-            avRecorder.isMeteringEnabled = true
             avRecorder.prepareToRecord()
         } catch {
             self.timerLabel.text = "Microphone was disabled for this Application."
@@ -262,29 +260,6 @@ extension LastViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
             alertMessage.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
             present(alertMessage, animated: true, completion: nil)
         }
-    }
-    
-    // Converts the file path into a URL
-    private func getURL() -> URL {
-        let filePath = URL(fileURLWithPath: finalURL)
-        return filePath
-    }
-    
-    // Used to play the Audio saved by file path
-    public func audioPlayer() {
-        do {
-            avPlayer = try AVAudioPlayer(contentsOf: getURL())
-            avPlayer.delegate = self
-            avPlayer.prepareToPlay()
-            avPlayer.volume = 1.0
-        } catch {
-            print("Error getting URL, Please Try Again Later, \(error)")
-        }
-    }
-    
-    
-    public func stopRecording() {
-        avPlayer.stop()
     }
 
 // MARK: Timer Functions

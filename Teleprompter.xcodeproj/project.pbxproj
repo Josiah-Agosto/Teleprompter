@@ -19,6 +19,7 @@
 		BDAD5C9E2257937F00FF9BE2 /* audioDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BDAD5C9C2257937F00FF9BE2 /* audioDataModel.xcdatamodeld */; };
 		BDAD5CA122579FD800FF9BE2 /* ContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAD5C9F22579FD800FF9BE2 /* ContentViewCell.swift */; };
 		BDAD5CA222579FD800FF9BE2 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BDAD5CA022579FD800FF9BE2 /* CustomCell.xib */; };
+		BDF95729226404140010B213 /* SelectedCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF95728226404140010B213 /* SelectedCellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		BDAD5C9D2257937F00FF9BE2 /* audioDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = audioDataModel.xcdatamodel; sourceTree = "<group>"; };
 		BDAD5C9F22579FD800FF9BE2 /* ContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewCell.swift; sourceTree = "<group>"; };
 		BDAD5CA022579FD800FF9BE2 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		BDF95728226404140010B213 /* SelectedCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				BDAB5CDB2241386D0021FAA1 /* ViewController.swift */,
 				BDAB5CF02241576B0021FAA1 /* SecondViewController.swift */,
 				BDAB5CF22241A87A0021FAA1 /* LastViewContrroller.swift */,
+				BDF95728226404140010B213 /* SelectedCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				BDAB5CDC2241386D0021FAA1 /* ViewController.swift in Sources */,
 				BDAB5CF32241A87A0021FAA1 /* LastViewContrroller.swift in Sources */,
 				BDAB5CEC224143B40021FAA1 /* mainScreenCustomSegue.swift in Sources */,
+				BDF95729226404140010B213 /* SelectedCellController.swift in Sources */,
 				BD8DDE252252420100E2F7E6 /* HomeViewController.swift in Sources */,
 				BDAB5CDA2241386D0021FAA1 /* AppDelegate.swift in Sources */,
 			);

@@ -5,6 +5,7 @@
 //  Created by Josiah Agosto on 4/1/19.
 //  Copyright © 2019 Josiah Agosto. All rights reserved.
 //
+// TODO: Fix Transition between Views, Able to Delete Cells in the HomeController Screen, Reload the Items when the Save Button is pressed in the Last Controller, Add a Selected Row at Index Path to allow for changing or Re-Teleprompting the File selected.
 
 import UIKit
 import CoreData
@@ -58,15 +59,30 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let dataCell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: "dataCell", for: indexPath) as! ContentViewCell
         dataCell.layer.borderWidth = 1
         dataCell.layer.cornerRadius = 5
-        if let playButton = dataCell.viewWithTag(1) as? UIButton {
-            playButton.layer.borderColor = UIColor.green.cgColor
-            playButton.layer.cornerRadius = 30
+        if let playButton = dataCell.viewWithTag(1) as? UILabel {
+            playButton.layer.borderColor = UIColor.black.cgColor
+            playButton.layer.cornerRadius = 5
             playButton.layer.borderWidth = 0.5
         }
         let model = audioModel[indexPath.row]
         dataCell.fileNameLabel?.text = model.fileName
         dataCell.dateCreatedLabel?.text = model.dateCreated
         return dataCell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let destination = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "selectedCell") as? SelectedCellController {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            dismiss(animated: false, completion: nil)
+            appDelegate.window?.rootViewController!.present(destination, animated: true, completion: nil)
+            let model = audioModel[indexPath.row]
+            destination.fileNameLabel?.text = model.fileName
+            destination.textView?.text = model.fileText
+            destination.fileURL = model.fileURL ?? ""
+        }
+
+        
     }
 // MARK: Persisting data Method
     // Loading the files when the app has been Terminated
@@ -86,4 +102,23 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
+}
+
+
+// This allows the URL to be given based on Index Path of the Cell in HomeViewController
+extension UIResponder {
+    func next<collection: UIResponder>(_ type: collection.Type) -> collection? {
+        return next as? collection ?? next?.next(type)
+    }
+}
+
+
+// This allows it to be used on the Collection View Cell
+extension UICollectionViewCell {
+    var collectionView: UICollectionView? {
+        return next(UICollectionView.self)
+    }
+    var indexPath: IndexPath? {
+        return collectionView?.indexPath(for: self)
+    }
 }
