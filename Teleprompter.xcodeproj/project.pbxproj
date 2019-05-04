@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD1307BB2274AAFA00CDE4F8 /* HomeUnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1307BA2274AAFA00CDE4F8 /* HomeUnwindSegue.swift */; };
+		BD1307BD2274ABCF00CDE4F8 /* SecondPerformSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1307BC2274ABCF00CDE4F8 /* SecondPerformSegue.swift */; };
+		BD1307BF2274ABDB00CDE4F8 /* MainUnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1307BE2274ABDB00CDE4F8 /* MainUnwindSegue.swift */; };
+		BD1307C12274AD9C00CDE4F8 /* LastPerformSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1307C02274AD9C00CDE4F8 /* LastPerformSegue.swift */; };
 		BD8DDE252252420100E2F7E6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DDE242252420100E2F7E6 /* HomeViewController.swift */; };
 		BDAB5CDA2241386D0021FAA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CD92241386D0021FAA1 /* AppDelegate.swift */; };
 		BDAB5CDC2241386D0021FAA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CDB2241386D0021FAA1 /* ViewController.swift */; };
 		BDAB5CDF2241386D0021FAA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDAB5CDD2241386D0021FAA1 /* Main.storyboard */; };
 		BDAB5CE12241386F0021FAA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDAB5CE02241386F0021FAA1 /* Assets.xcassets */; };
 		BDAB5CE42241386F0021FAA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDAB5CE22241386F0021FAA1 /* LaunchScreen.storyboard */; };
-		BDAB5CEC224143B40021FAA1 /* mainScreenCustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CEB224143B40021FAA1 /* mainScreenCustomSegue.swift */; };
+		BDAB5CEC224143B40021FAA1 /* MainPerformSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CEB224143B40021FAA1 /* MainPerformSegue.swift */; };
 		BDAB5CF12241576B0021FAA1 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CF02241576B0021FAA1 /* SecondViewController.swift */; };
 		BDAB5CF32241A87A0021FAA1 /* LastViewContrroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAB5CF22241A87A0021FAA1 /* LastViewContrroller.swift */; };
 		BDAD5C9E2257937F00FF9BE2 /* audioDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BDAD5C9C2257937F00FF9BE2 /* audioDataModel.xcdatamodeld */; };
@@ -23,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD1307BA2274AAFA00CDE4F8 /* HomeUnwindSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUnwindSegue.swift; sourceTree = "<group>"; };
+		BD1307BC2274ABCF00CDE4F8 /* SecondPerformSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPerformSegue.swift; sourceTree = "<group>"; };
+		BD1307BE2274ABDB00CDE4F8 /* MainUnwindSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUnwindSegue.swift; sourceTree = "<group>"; };
+		BD1307C02274AD9C00CDE4F8 /* LastPerformSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastPerformSegue.swift; sourceTree = "<group>"; };
 		BD8DDE242252420100E2F7E6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		BDAB5CD62241386D0021FAA1 /* Teleprompter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teleprompter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDAB5CD92241386D0021FAA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -31,7 +39,7 @@
 		BDAB5CE02241386F0021FAA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDAB5CE32241386F0021FAA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BDAB5CE52241386F0021FAA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BDAB5CEB224143B40021FAA1 /* mainScreenCustomSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainScreenCustomSegue.swift; sourceTree = "<group>"; };
+		BDAB5CEB224143B40021FAA1 /* MainPerformSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPerformSegue.swift; sourceTree = "<group>"; };
 		BDAB5CF02241576B0021FAA1 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		BDAB5CF22241A87A0021FAA1 /* LastViewContrroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewContrroller.swift; sourceTree = "<group>"; };
 		BDAD5C9D2257937F00FF9BE2 /* audioDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = audioDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -51,6 +59,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD1307B922749E7200CDE4F8 /* Custom Segues */ = {
+			isa = PBXGroup;
+			children = (
+				BDAB5CEB224143B40021FAA1 /* MainPerformSegue.swift */,
+				BD1307BA2274AAFA00CDE4F8 /* HomeUnwindSegue.swift */,
+				BD1307BC2274ABCF00CDE4F8 /* SecondPerformSegue.swift */,
+				BD1307BE2274ABDB00CDE4F8 /* MainUnwindSegue.swift */,
+				BD1307C02274AD9C00CDE4F8 /* LastPerformSegue.swift */,
+			);
+			path = "Custom Segues";
+			sourceTree = "<group>";
+		};
 		BDAB5CCD2241386D0021FAA1 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +107,7 @@
 				BDAD5C9F22579FD800FF9BE2 /* ContentViewCell.swift */,
 				BDAD5CA022579FD800FF9BE2 /* CustomCell.xib */,
 				BDAD5C9C2257937F00FF9BE2 /* audioDataModel.xcdatamodeld */,
+				BD1307B922749E7200CDE4F8 /* Custom Segues */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -102,7 +123,6 @@
 		BDAB5CEF224143E70021FAA1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BDAB5CEB224143B40021FAA1 /* mainScreenCustomSegue.swift */,
 				BD8DDE242252420100E2F7E6 /* HomeViewController.swift */,
 				BDAB5CDB2241386D0021FAA1 /* ViewController.swift */,
 				BDAB5CF02241576B0021FAA1 /* SecondViewController.swift */,
@@ -184,15 +204,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD1307BF2274ABDB00CDE4F8 /* MainUnwindSegue.swift in Sources */,
+				BD1307C12274AD9C00CDE4F8 /* LastPerformSegue.swift in Sources */,
 				BDAD5C9E2257937F00FF9BE2 /* audioDataModel.xcdatamodeld in Sources */,
+				BD1307BD2274ABCF00CDE4F8 /* SecondPerformSegue.swift in Sources */,
 				BDAB5CF12241576B0021FAA1 /* SecondViewController.swift in Sources */,
 				BDAD5CA122579FD800FF9BE2 /* ContentViewCell.swift in Sources */,
 				BDAB5CDC2241386D0021FAA1 /* ViewController.swift in Sources */,
 				BDAB5CF32241A87A0021FAA1 /* LastViewContrroller.swift in Sources */,
-				BDAB5CEC224143B40021FAA1 /* mainScreenCustomSegue.swift in Sources */,
+				BDAB5CEC224143B40021FAA1 /* MainPerformSegue.swift in Sources */,
 				BDF95729226404140010B213 /* SelectedCellController.swift in Sources */,
 				BD8DDE252252420100E2F7E6 /* HomeViewController.swift in Sources */,
 				BDAB5CDA2241386D0021FAA1 /* AppDelegate.swift in Sources */,
+				BD1307BB2274AAFA00CDE4F8 /* HomeUnwindSegue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

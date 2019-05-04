@@ -18,11 +18,16 @@ class SelectedCellController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var stopOutlet: UIButton!
     // Variables
     var fileURL: String = ""
+    var mainText: String = ""
+    var fileName: String = ""
     // Delegates
-    var avPlayer: AVAudioPlayer?
+    var avPlayer: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Assigning the Variables to the Outlets
+        textView.text = mainText
+        fileNameLabel.text = fileName
         // Initial Setup
         pauseOutlet.isEnabled = false
         pauseOutlet.layer.opacity = 0.5

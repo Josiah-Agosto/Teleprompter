@@ -300,6 +300,7 @@ extension LastViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
 //MARK: Core Data Methods and IBAction for SaveButton
     @IBAction func saveButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "HomeVC", sender: nil)
         saveAudioFiles()
         saveFiles()
     }

@@ -7,18 +7,10 @@
 //
 
 import UIKit
-import AVFoundation
 
 class ContentViewCell: UICollectionViewCell {
-    // Delegates
-    var avPlayer: AVAudioPlayer!
     // Outlets
     @IBOutlet weak var fileNameLabel: UILabel!
     @IBOutlet weak var dateCreatedLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
 }
