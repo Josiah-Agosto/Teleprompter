@@ -12,29 +12,43 @@ import AVFoundation
 class SelectedCellController: UIViewController, AVAudioPlayerDelegate {
     // Outlets
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var fileNameLabel: UILabel!
-    @IBOutlet weak var playOutlet: UIButton!
-    @IBOutlet weak var pauseOutlet: UIButton!
-    @IBOutlet weak var stopOutlet: UIButton!
+    @IBOutlet weak var playButtonOutlet: UIBarButtonItem!
+    @IBOutlet weak var pauseButtonOutlet: UIBarButtonItem!
+    @IBOutlet weak var stopButtonOutlet: UIBarButtonItem!
+    @IBOutlet weak var homeButtonOutlet: UIBarButtonItem!
     // Variables
     var fileURL: String = ""
     var mainText: String = ""
-    var fileName: String = ""
+    var fileName: String? = ""
+    // Button Variables
+    private var isPlayEnabled: Bool = true
+    private var isPauseEnabled: Bool = false
+    private var isStopEnabled: Bool = false
+    private var playButtonColor: UIColor {
+        isPlayEnabled ? UIColor.green : UIColor.clear
+    }
+    private var pauseButtonColor: UIColor {
+        isPauseEnabled ? UIColor.yellow : UIColor.clear
+    }
+    private var stopButtonColor: UIColor {
+        isStopEnabled ? UIColor.red : UIColor.clear
+    }
     // Delegates
     var avPlayer: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Assigning the Variables to the Outlets
-        textView.text = mainText
-        fileNameLabel.text = fileName
-        // Initial Setup
-        pauseOutlet.isEnabled = false
-        pauseOutlet.layer.opacity = 0.5
-        stopOutlet.isEnabled = false
-        stopOutlet.layer.opacity = 0.5
+        setup()
     }
     
+    
+    private func setup() {
+        playButtonOutlet.isEnabled = isPlayEnabled
+        pauseButtonOutlet.isEnabled = isPauseEnabled
+        stopButtonOutlet.isEnabled = isStopEnabled
+        textView.text = mainText
+        self.title = fileName ?? "Unnamed File"
+    }
     
     // Converting the String to a URL
     func convertURL() -> URL {
@@ -43,58 +57,55 @@ class SelectedCellController: UIViewController, AVAudioPlayerDelegate {
         return completedFile
     }
     
-    
-    @IBAction func backButton(_ sender: UIButton) {
-        if let destination = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC") as? HomeViewController {
-            let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            dismiss(animated: false, completion: nil)
-            appDelegate?.window?.rootViewController!.present(destination, animated: false, completion: nil)
-        }
-    }
-    
     // Play Button
-    @IBAction func playButton(_ sender: UIButton) {
+    @IBAction func playButtonAction(_ sender: UIBarButtonItem) {
         do {
             avPlayer = try AVAudioPlayer(contentsOf: convertURL())
             avPlayer?.delegate = self
             avPlayer?.play()
             avPlayer?.volume = 1
             // Setup after pressing the Button
-            pauseOutlet.isEnabled = true
-            pauseOutlet.layer.opacity = 0
-            stopOutlet.isEnabled = true
-            stopOutlet.layer.opacity = 0
-            
+            sender.isEnabled = true
+            sender.tintColor = playButtonColor
+            isPauseEnabled = false
+            pauseButtonOutlet.tintColor = pauseButtonColor
+            isStopEnabled = false
+            stopButtonOutlet.tintColor = stopButtonColor
         } catch {
             print("Error playing Audio, \(error.localizedDescription)")
         }
     }
     
     // Pause Button
-    @IBAction func PauseButton(_ sender: UIButton) {
+    @IBAction func pauseButtonAction(_ sender: UIBarButtonItem) {
         if avPlayer?.isPlaying == true {
             avPlayer?.pause()
-            // Setip after pressing the Button
-            pauseOutlet.isEnabled = false
-            pauseOutlet.layer.opacity = 0.5
-            playOutlet.isEnabled = true
-            stopOutlet.isEnabled = true
+            // Setup after pressing the Button
+            sender.isEnabled = true
+            sender.tintColor = pauseButtonColor
+            isPlayEnabled = false
+            playButtonOutlet.tintColor = playButtonColor
+            isStopEnabled = false
+            stopButtonOutlet.tintColor = stopButtonColor
+        } else {
+            print("Error Pausing Audio")
         }
     }
     
     // Stop Button
-    @IBAction func stopButton(_ sender: UIButton) {
+    @IBAction func stopButtonAction(_ sender: UIBarButtonItem) {
         if avPlayer?.isPlaying == true {
             avPlayer?.stop()
             // Setup after pressing the Button
-            stopOutlet.isEnabled = false
-            stopOutlet.layer.opacity = 0.5
-            playOutlet.isEnabled = false
-            playOutlet.layer.opacity = 0.5
-            pauseOutlet.isEnabled = false
-            pauseOutlet.layer.opacity = 0.5
+            sender.isEnabled = true
+            sender.tintColor = stopButtonColor
+            isPlayEnabled = false
+            playButtonOutlet.tintColor = pauseButtonColor
+            isPauseEnabled = false
+            pauseButtonOutlet.tintColor = pauseButtonColor
+        } else {
+            print("Error Stopping Audio")
         }
     }
-    
     
 }

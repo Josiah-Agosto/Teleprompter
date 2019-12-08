@@ -16,10 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        if let rootVC = window?.rootViewController as? HomeViewController {
-//            // Name Container i put in the HomeViewController
-//            rootVC.container = persistentContainer
-//        }
         return true
     }
     

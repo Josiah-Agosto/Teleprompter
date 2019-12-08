@@ -10,22 +10,15 @@ import UIKit
 
 class SecondViewController: UIViewController, UITextViewDelegate {
     // Outlets
-    @IBOutlet weak var finishedTextView: UITextView!
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var saveButtonFile: UIButton!
+    @IBOutlet weak var textViewOutlet: UITextView!
     // Variables
     var recievedText: String = ""
     var fileName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Next Button
-        nextButton.layer.cornerRadius = 15
-        // Back Button
-        backButton.layer.cornerRadius = 15
         // Text View
-        finishedTextView?.text = recievedText
+        textViewOutlet?.text = recievedText
     }
     
     
@@ -36,25 +29,5 @@ class SecondViewController: UIViewController, UITextViewDelegate {
             destination.fileNameText = fileName
         }
     }
-    
-    
-    @IBAction func presentButton(_ sender: UIButton) {
-        // Without this, A proper transition won't occur.
-        if let destination = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LastVC") as? SecondViewController {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            dismiss(animated: false, completion: nil)
-            appDelegate.window?.rootViewController!.present(destination, animated: false, completion: nil)
-        }
-    }
-
-    
-    @IBAction func backButtonAction(_ sender: UIButton) {
-        if let destination = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainVC") as? SecondViewController {
-            let delegate = UIApplication.shared.delegate as! AppDelegate
-            dismiss(animated: false, completion: nil)
-            delegate.window?.rootViewController!.present(destination, animated: false, completion: nil)
-        }
-    }
-    
     
 }

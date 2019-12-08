@@ -5,7 +5,6 @@
 //  Created by Josiah Agosto on 4/1/19.
 //  Copyright © 2019 Josiah Agosto. All rights reserved.
 //
-// TODO: Able to Delete Cells in the HomeController Screen, Reload the Items when the Save Button is pressed in the Last Controller.
 
 import UIKit
 import CoreData
@@ -13,33 +12,63 @@ import CoreData
 class HomeViewController: UIViewController {
     // Outlets
     @IBOutlet weak var homeCollectionView: UICollectionView!
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var trashLabel: UILabel!
-    @IBOutlet weak var newFileButton: UIButton!
-    // Constants
-    let mainView = ViewController()
+    @IBOutlet weak var newFileOutlet: UIBarButtonItem!
+    @IBOutlet weak var editButtonOutlet: UIBarButtonItem!
     // Variables
     var audioModel = [AudioModel]()
     var fileName: String = ""
     var speechText: String = ""
     var date: String = ""
     var fileURL: String = ""
-    var notEditing: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    // Appearances
-        trashLabel.layer.opacity = 0
-        trashLabel.layer.cornerRadius = 25
-    // Instantiating the Nib
         let nibCell = UINib(nibName: "CustomCell", bundle: nil)
         homeCollectionView.register(nibCell, forCellWithReuseIdentifier: "dataCell")
-    // Getting the data in Audio Model
-        retrieveData()
     }
-
     
-}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        retrieveData()
+        homeCollectionView.reloadData()
+    }
+    
+    
+    @IBAction func editButtonAction(_ sender: UIBarButtonItem) {
+        customCells()
+    }
+    
+
+    func customCells() {
+        isEditing = !isEditing
+        if !isEditing {
+            isEditing = false
+            newFileOutlet.isEnabled = false
+        } else if isEditing {
+            isEditing = true
+            newFileOutlet.isEnabled = true
+        }
+    }
+    
+
+    private func retrieveData() {
+        // Referring to the App Delegates Container
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        // Creating a Context
+        let managedContext = appDelegate.persistentContainer.viewContext
+        // What we want to fetch
+        let fetchRequest = NSFetchRequest<AudioModel>(entityName: "AudioModel")
+        // If i want to sort the Cells by Date
+        // fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "dateCreated", ascending: true)]
+        do {
+            audioModel = try managedContext.fetch(fetchRequest)
+        } catch {
+            print("Failed to load Data")
+        }
+    }
+    
+} // Class End
 
 
 // MARK: UICollectionView Extension
@@ -77,7 +106,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return !notEditing ? CGSize(width: 200, height: 200) : CGSize(width: 175, height: 175)
+        return !isEditing ? CGSize(width: 200, height: 200) : CGSize(width: 175, height: 175)
     }
     
     
@@ -90,59 +119,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         destination.fileName = model.fileName!
         destination.mainText = model.fileText!
         destination.fileURL = model.fileURL!
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        dismiss(animated: false, completion: nil)
-        appDelegate?.window?.rootViewController?.present(destination, animated: false, completion: nil)
+        self.navigationController?.pushViewController(destination, animated: true)
     }
-    
-    // Edit Button
-    @IBAction func editButtonAction(_ sender: UIButton) {
-        customCells()
-    }
-    
-    /// Adds Visual Appearance to Edit Button and Other Objects
-    func customCells() {
-        notEditing = !notEditing
-        if !notEditing {
-            notEditing = false
-            newFileButton.isEnabled = false
-            newFileButton.alpha = 0.5
-            UIView.animate(withDuration: 0.7) {
-                self.editButton.backgroundColor = UIColor.clear
-                self.editButton.setTitleColor(UIColor.red, for: .normal)
-                self.trashLabel.layer.opacity = 0
-                self.trashLabel.textColor = UIColor.black
-            }
-        } else if notEditing {
-            notEditing = true
-            newFileButton.isEnabled = true
-            newFileButton.alpha = 1.0
-            UIView.animate(withDuration: 0.7) {
-                self.editButton.layer.cornerRadius = 5
-                self.editButton.setTitleColor(UIColor.white, for: .normal)
-                self.editButton.backgroundColor = UIColor.darkGray
-                self.trashLabel.layer.opacity = 0.7
-                self.trashLabel.layer.backgroundColor = UIColor.red.cgColor
-                self.trashLabel.textColor = UIColor.white
-            }
-        }
-    }
-// MARK: Persisting data Method
-    // Loading the files when the app has been Terminated
-    private func retrieveData() {
-        // Referring to the App Delegates Container
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        // Creating a Context
-        let managedContext = appDelegate.persistentContainer.viewContext
-        // What we want to fetch
-        let fetchRequest = NSFetchRequest<AudioModel>(entityName: "AudioModel")
-        // If i want to sort the Cells by Date
-        // fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "dateCreated", ascending: true)]
-        do {
-            audioModel = try managedContext.fetch(fetchRequest)
-        } catch {
-            print("Failed to load Data")
-        }
-    }
-    
-}
+} // Extension End

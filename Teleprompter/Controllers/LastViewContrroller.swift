@@ -10,13 +10,12 @@ import UIKit
 import AVFoundation
 import CoreData
 
-class LastViewController: UIViewController {
+class LastViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     // Outlets
-    @IBOutlet weak var saveButtonOutlet: UIButton!
-    @IBOutlet weak var playButtonOutlet: UIButton!
-    @IBOutlet weak var pauseButtonOutlet: UIButton!
-    @IBOutlet weak var stopButtonOutlet: UIButton!
-    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var playButtonOutlet: UIBarButtonItem!
+    @IBOutlet weak var pauseButtonOutlet: UIBarButtonItem!
+    @IBOutlet weak var stopButtonOutlet: UIBarButtonItem!
+    lazy var saveBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonAction(_:)))
     @IBOutlet weak var viewHolder: UIView!
     // Text Outlets
     @IBOutlet weak var mainSectionText: UILabel!
@@ -34,6 +33,23 @@ class LastViewController: UIViewController {
     var dateMade: String = ""
     private var isPlaying: Bool = false
     private var startingShownText: String = ""
+    // Button Variables
+    private var isPlayEnabled: Bool = true
+    private var isPauseEnabled: Bool = false
+    private var isStopEnabled: Bool = false
+    private var isSaveEnabled: Bool = false
+    private var playButtonColor: UIColor {
+        return isPlayEnabled ? UIColor.green : UIColor.darkGray
+    }
+    private var pauseButtonColor: UIColor {
+        return isPauseEnabled ? UIColor.yellow : UIColor.darkGray
+    }
+    private var stopButtonColor: UIColor {
+        return isStopEnabled ? UIColor.red : UIColor.darkGray
+    }
+    private var saveButtonColor: UIColor {
+        return isSaveEnabled ? UIColor.white : UIColor.darkGray
+    }
     // Variables for TextView
     private var starting: Bool = true
     private var ending: Bool = false
@@ -50,14 +66,25 @@ class LastViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    // Animations and Other Visual Appearances
-        pauseButtonOutlet.isEnabled = false
-        pauseButtonOutlet.layer.opacity = 0.5
-        stopButtonOutlet.isEnabled = false
-        stopButtonOutlet.layer.opacity = 0.5
-        saveButtonOutlet.isEnabled = false
-        saveButtonOutlet.layer.opacity = 0.5
-    // Starting to configure the Recording Process
+        setup()
+    }
+    
+    
+    private func setup() {
+        // Navigation Bar
+        self.navigationItem.hidesBackButton = true
+        let titleColorAttribute = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationItem.leftBarButtonItem = saveBarButtonItem
+        self.navigationController?.navigationBar.titleTextAttributes = titleColorAttribute
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        // Recording Controls
+        playButtonOutlet.isEnabled = isPlayEnabled
+        pauseButtonOutlet.isEnabled = isPauseEnabled
+        stopButtonOutlet.isEnabled = isStopEnabled
+        saveBarButtonItem.isEnabled = isSaveEnabled
+        // Starting to configure the Recording Process
         configure()
     }
     
@@ -85,7 +112,7 @@ class LastViewController: UIViewController {
             avRecorder.delegate = self
             avRecorder.prepareToRecord()
         } catch {
-            self.timerLabel.text = "Microphone was disabled for this Application."
+            self.title = "Microphone was disabled for this Application."
         }
     // Opaque Text
     mainSectionText.textColor = UIColor.white
@@ -113,8 +140,8 @@ class LastViewController: UIViewController {
             destination.fileURL = finalURL
         }
     }
-//MARK: Text and UIView and Tapping Screen Functionality Functions
-    // Tapping the View; What happens?; It shows each sentence in the Main Section Part, separated by (.), (!), or (?)
+
+    // MARK: Text View Logic
     @objc private func viewTapped(sender: UITapGestureRecognizer? = nil) {
         var range = [Range<String.Index>]()
         let analyze = finishedTextHolder.linguisticTags(in: finishedTextHolder.startIndex..<finishedTextHolder.endIndex, scheme: NSLinguisticTagScheme.lexicalClass.rawValue, tokenRanges: &range)
@@ -139,62 +166,65 @@ class LastViewController: UIViewController {
             viewHolder.isUserInteractionEnabled = false
         }
     }
-    
-}
 
-
-// MARK: Audio Extension
-extension LastViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
-// MARK: AVFoundation Functions
     // Play Button Pressed
-    @IBAction func playButton(_ sender: UIButton) {
+    @IBAction func playButtonAction(_ sender: UIBarButtonItem) {
         recordTapped()
-        // Animations and Other Visual Appearances
-        sender.layer.opacity = 0.5
-        sender.isEnabled = false
-        pauseButtonOutlet.isEnabled = true
-        pauseButtonOutlet.layer.opacity = 1
-        stopButtonOutlet.isEnabled = true
-        stopButtonOutlet.layer.opacity = 1
-        view.layer.borderColor = UIColor.green.cgColor
-        view.layer.borderWidth = 1
+        isPlayEnabled = false
+        sender.isEnabled = isPlayEnabled
+        sender.tintColor = playButtonColor
+        isPauseEnabled = true
+        pauseButtonOutlet.isEnabled = isPauseEnabled
+        pauseButtonOutlet.tintColor = pauseButtonColor
+        isStopEnabled = true
+        stopButtonOutlet.isEnabled = isStopEnabled
+        stopButtonOutlet.tintColor = stopButtonColor
+        isSaveEnabled = false
+        saveBarButtonItem.isEnabled = isSaveEnabled
+        saveBarButtonItem.tintColor = saveButtonColor
         isPlaying = true
     }
-    
+        
     // Stop Button Pressed
-    @IBAction func stopButton(_ sender: UIButton) {
+    @IBAction func stopButtonAction(_ sender: UIBarButtonItem) {
         stopTimer()
         isPlaying = false
         isStillRecording(success: true)
-        // Animations and Other Visual Appearances
-        sender.layer.opacity = 0.5
-        sender.isEnabled = false
-        saveButtonOutlet.isEnabled = true
-        saveButtonOutlet.layer.opacity = 1
-        pauseButtonOutlet.isEnabled = false
-        pauseButtonOutlet.layer.opacity = 0.5
-        view.layer.borderColor = UIColor.red.cgColor
-        view.layer.borderWidth = 1
+        isStopEnabled = false
+        sender.isEnabled = isStopEnabled
+        sender.tintColor = stopButtonColor
+        isPauseEnabled = false
+        pauseButtonOutlet.isEnabled = isPauseEnabled
+        pauseButtonOutlet.tintColor = pauseButtonColor
+        isPlayEnabled = false
+        playButtonOutlet.isEnabled = isPlayEnabled
+        playButtonOutlet.tintColor = playButtonColor
+        isSaveEnabled = true
+        saveBarButtonItem.isEnabled = isSaveEnabled
+        saveBarButtonItem.tintColor = saveButtonColor
     }
-    
+        
     // Pause Pressed
-    @IBAction func pauseRecordingButton(_ sender: UIButton) {
+    @IBAction func pauseButtonAction(_ sender: UIBarButtonItem) {
         pausingSetup()
-        // Animations and Other Visual Appearances
-        sender.isEnabled = false
-        sender.layer.opacity = 0.5
-        stopButtonOutlet.isEnabled = true
-        stopButtonOutlet.layer.opacity = 1
-        playButtonOutlet.isEnabled = true
-        playButtonOutlet.layer.opacity = 1
-        view.layer.borderColor = UIColor.yellow.cgColor
-        view.layer.borderWidth = 1
+        isPauseEnabled = false
+        sender.isEnabled = isPauseEnabled
+        sender.tintColor = pauseButtonColor
+        isStopEnabled = true
+        stopButtonOutlet.isEnabled = isStopEnabled
+        stopButtonOutlet.tintColor = stopButtonColor
+        isPlayEnabled = true
+        playButtonOutlet.isEnabled = isPlayEnabled
+        playButtonOutlet.tintColor = playButtonColor
+        isSaveEnabled = false
+        saveBarButtonItem.isEnabled = isSaveEnabled
+        saveBarButtonItem.tintColor = saveButtonColor
+
     }
-    
+        
     // Pausing Recording
     private func pausingSetup() {
         if isPlaying == true {
-            playButtonOutlet.setTitle("Play", for: .normal)
             avRecorder.pause()
             isStillRecording(success: false)
             stopTimer()
@@ -204,27 +234,18 @@ extension LastViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     // Start Recording Function
     private func StartRecording() {
         if isPlaying == false {
-            // Recording
             setupRecording()
             startTimer()
-            // Changes button when starting to record
-            UIView.animate(withDuration: 15, animations: {
-                self.playButtonOutlet.layer.opacity = 0.3
-            }) { (_) in
-                self.playButtonOutlet.layer.opacity = 1
-            }
         }
     }
     
     // When finished recording
     private func isStillRecording(success: Bool) {
         if success == true {
-            playButtonOutlet.setTitle("Record", for: .normal)
         } else {
             avRecorder.stop()
             avRecorder = nil
             isPlaying = false
-            playButtonOutlet.setTitle("Re-Record", for: .normal)
         }
     }
     
@@ -249,12 +270,12 @@ extension LastViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
             }
         } else {
             isStillRecording(success: false)
-            timerLabel.text = "We were unable to Complete the Request."
+            self.title = "We were unable to Complete the Request."
         }
     }
     
     // Checks if the audio did finish recording and if it did then it will stop
-    private func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
             let alertMessage = UIAlertController(title: "Finish Recording", message: "Successfully Recorded the Audio.", preferredStyle: .alert)
             alertMessage.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
@@ -264,6 +285,7 @@ extension LastViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 
 // MARK: Timer Functions
     private func startTimer() {
+        // TODO: Fix the selector
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(LastViewController.updateTimer), userInfo: nil, repeats: true)
     }
     
@@ -278,7 +300,7 @@ extension LastViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         if timer.isValid == false {
             minutes = 0
             seconds = 0
-            timerLabel.text = "\(minutes):\(seconds)"
+            self.title = "0:00"
         }
     }
     
@@ -286,25 +308,28 @@ extension LastViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     @objc private func updateTimer() {
         if timer.isValid {
             seconds += 1
-            timerLabel.text = "\(minutes):0\(seconds)"
+            self.title = "\(minutes):0\(seconds)"
             if seconds >= 10 {
-                timerLabel.text = "\(minutes):\(seconds)"
+                self.title = "\(minutes):\(seconds)"
             }
             if seconds == 59 {
                 minutes += 1
-                seconds = 1
+                seconds = 0
                 seconds += 1
             }
         }
     }
     
-//MARK: Core Data Methods and IBAction for SaveButton
-    @IBAction func saveButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "HomeVC", sender: nil)
+//MARK: Core Data Method and Save Method
+    @objc private func saveButtonAction(_ sender: UIBarButtonItem) {
         saveAudioFiles()
         saveFiles()
+        self.navigationController?.popToRootViewController(animated: true)
+//        if let destination = storyboard?.instantiateViewController(withIdentifier: "HomeVC") as? HomeViewController {
+//            destination.homeCollectionView.reloadData()
+//        }
     }
-    
+
     // Core Data Stuff
     public func saveAudioFiles() {
         let entity = NSEntityDescription.entity(forEntityName: "AudioModel", in: context)
@@ -323,7 +348,14 @@ extension LastViewController: AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         } catch {
             print("Error saving Context, \(error)")
         }
-        // Suppossed to Reload Collection View
     }
     
+} // Class End
+
+
+
+extension LastViewController: CollectionReloadingProtocol {
+    func reloadCollection() {
+        
+    }
 }
