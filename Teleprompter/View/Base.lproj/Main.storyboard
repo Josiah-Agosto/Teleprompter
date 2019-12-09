@@ -148,27 +148,15 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Title" id="Z5e-m4-ekR">
-                                        <barButtonItem key="leftBarButtonItem" title="Home" id="nt4-2Z-iUq">
-                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem image="stop.fill" catalog="system" id="Ouu-q8-dpU">
                                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <connections>
-                                                    <action selector="stopButtonAction:" destination="vbc-jE-is4" id="k2R-V8-qit"/>
-                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem systemItem="pause" id="6XP-Jb-SbY">
                                                 <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <connections>
-                                                    <action selector="pauseButtonAction:" destination="vbc-jE-is4" id="74x-8y-Sb0"/>
-                                                </connections>
                                             </barButtonItem>
                                             <barButtonItem systemItem="play" id="j9f-EP-626">
                                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <connections>
-                                                    <action selector="playButtonAction:" destination="vbc-jE-is4" id="B0M-5i-nZU"/>
-                                                </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -188,10 +176,6 @@
                         <viewLayoutGuide key="safeArea" id="Fho-Xu-ami"/>
                     </view>
                     <connections>
-                        <outlet property="homeButtonOutlet" destination="nt4-2Z-iUq" id="Dvn-Yg-awI"/>
-                        <outlet property="pauseButtonOutlet" destination="6XP-Jb-SbY" id="sf1-uV-b71"/>
-                        <outlet property="playButtonOutlet" destination="j9f-EP-626" id="QkG-wu-YBM"/>
-                        <outlet property="stopButtonOutlet" destination="Ouu-q8-dpU" id="gld-UY-xfM"/>
                         <outlet property="textView" destination="UjJ-RZ-Urv" id="vT8-kJ-Vi7"/>
                         <outlet property="view" destination="KgG-kK-QTS" id="qmZ-8c-2yW"/>
                     </connections>
