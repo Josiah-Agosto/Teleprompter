@@ -12,10 +12,9 @@ import AVFoundation
 class SelectedCellController: UIViewController, AVAudioPlayerDelegate {
     // Outlets
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var playButtonOutlet: UIBarButtonItem!
-    @IBOutlet weak var pauseButtonOutlet: UIBarButtonItem!
-    @IBOutlet weak var stopButtonOutlet: UIBarButtonItem!
-    @IBOutlet weak var homeButtonOutlet: UIBarButtonItem!
+    lazy var playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(playButtonAction(_:)))
+    lazy var pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseButtonAction(_:)))
+    lazy var stopBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(stopButtonAction(_:)))
     // Variables
     var fileURL: String = ""
     var mainText: String = ""
@@ -43,9 +42,11 @@ class SelectedCellController: UIViewController, AVAudioPlayerDelegate {
     
     
     private func setup() {
-        playButtonOutlet.isEnabled = isPlayEnabled
-        pauseButtonOutlet.isEnabled = isPauseEnabled
-        stopButtonOutlet.isEnabled = isStopEnabled
+        // Navigation Bar
+        self.navigationItem.rightBarButtonItems = [stopBarButtonItem, pauseBarButtonItem, playBarButtonItem]
+        playBarButtonItem.isEnabled = isPlayEnabled
+        pauseBarButtonItem.isEnabled = isPauseEnabled
+        stopBarButtonItem.isEnabled = isStopEnabled
         textView.text = mainText
         self.title = fileName ?? "Unnamed File"
     }
@@ -58,7 +59,7 @@ class SelectedCellController: UIViewController, AVAudioPlayerDelegate {
     }
     
     // Play Button
-    @IBAction func playButtonAction(_ sender: UIBarButtonItem) {
+    @objc private func playButtonAction(_ sender: UIBarButtonItem) {
         do {
             avPlayer = try AVAudioPlayer(contentsOf: convertURL())
             avPlayer?.delegate = self
@@ -68,41 +69,41 @@ class SelectedCellController: UIViewController, AVAudioPlayerDelegate {
             sender.isEnabled = true
             sender.tintColor = playButtonColor
             isPauseEnabled = false
-            pauseButtonOutlet.tintColor = pauseButtonColor
+            pauseBarButtonItem.tintColor = pauseButtonColor
             isStopEnabled = false
-            stopButtonOutlet.tintColor = stopButtonColor
+            stopBarButtonItem.tintColor = stopButtonColor
         } catch {
             print("Error playing Audio, \(error.localizedDescription)")
         }
     }
     
     // Pause Button
-    @IBAction func pauseButtonAction(_ sender: UIBarButtonItem) {
+    @objc private func pauseButtonAction(_ sender: UIBarButtonItem) {
         if avPlayer?.isPlaying == true {
             avPlayer?.pause()
             // Setup after pressing the Button
             sender.isEnabled = true
             sender.tintColor = pauseButtonColor
             isPlayEnabled = false
-            playButtonOutlet.tintColor = playButtonColor
+            playBarButtonItem.tintColor = playButtonColor
             isStopEnabled = false
-            stopButtonOutlet.tintColor = stopButtonColor
+            stopBarButtonItem.tintColor = stopButtonColor
         } else {
             print("Error Pausing Audio")
         }
     }
     
     // Stop Button
-    @IBAction func stopButtonAction(_ sender: UIBarButtonItem) {
+    @objc private func stopButtonAction(_ sender: UIBarButtonItem) {
         if avPlayer?.isPlaying == true {
             avPlayer?.stop()
             // Setup after pressing the Button
             sender.isEnabled = true
             sender.tintColor = stopButtonColor
             isPlayEnabled = false
-            playButtonOutlet.tintColor = pauseButtonColor
+            playBarButtonItem.tintColor = pauseButtonColor
             isPauseEnabled = false
-            pauseButtonOutlet.tintColor = pauseButtonColor
+            pauseBarButtonItem.tintColor = pauseButtonColor
         } else {
             print("Error Stopping Audio")
         }
