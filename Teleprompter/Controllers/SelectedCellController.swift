@@ -42,7 +42,7 @@ class SelectedCellController: UIViewController, AVAudioPlayerDelegate {
     
     
     private func setup() {
-        // Navigation Bar
+        // Navigation Stuff
         self.navigationItem.rightBarButtonItems = [stopBarButtonItem, pauseBarButtonItem, playBarButtonItem]
         playBarButtonItem.isEnabled = isPlayEnabled
         pauseBarButtonItem.isEnabled = isPauseEnabled

@@ -43,12 +43,20 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Home" largeTitleDisplayMode="never" id="NUs-J9-2PX">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" id="18E-o7-QDJ">
-                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="editButtonAction:" destination="qX2-oQ-4Ru" id="a8d-Cd-6HW"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Edit" id="18E-o7-QDJ">
+                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="editButtonAction:" destination="qX2-oQ-4Ru" id="a8d-Cd-6HW"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem enabled="NO" systemItem="trash" id="HYF-2v-WcA">
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="deleteButtonAction:" destination="qX2-oQ-4Ru" id="UWU-vb-bda"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="New File" id="Kuc-ml-agb">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -57,6 +65,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteButtonOutlet" destination="HYF-2v-WcA" id="1R0-7b-hya"/>
                         <outlet property="editButtonOutlet" destination="18E-o7-QDJ" id="rqH-fr-aFV"/>
                         <outlet property="homeCollectionView" destination="jOV-sy-4yJ" id="5io-QC-yr2"/>
                         <outlet property="newFileOutlet" destination="Kuc-ml-agb" id="rol-AU-2XJ"/>
@@ -74,11 +83,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="D3b-9E-ilQ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" bouncesZoom="NO" keyboardDismissMode="onDrag" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="D3b-9E-ilQ">
                                 <rect key="frame" x="20" y="117" width="984" height="631"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" smartInsertDeleteType="no"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write out what you want the Teleprompter to show." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AV3-jD-HWV">
                                 <rect key="frame" x="226.5" y="67" width="571" height="32.5"/>
@@ -141,37 +150,13 @@
                                     <outlet property="delegate" destination="vbc-jE-is4" id="o6c-oo-er4"/>
                                 </connections>
                             </textView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQx-ZG-vW8">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="3t3-kl-8VT"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Title" id="Z5e-m4-ekR">
-                                        <rightBarButtonItems>
-                                            <barButtonItem image="stop.fill" catalog="system" id="Ouu-q8-dpU">
-                                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </barButtonItem>
-                                            <barButtonItem systemItem="pause" id="6XP-Jb-SbY">
-                                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </barButtonItem>
-                                            <barButtonItem systemItem="play" id="j9f-EP-626">
-                                                <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </barButtonItem>
-                                        </rightBarButtonItems>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="UjJ-RZ-Urv" firstAttribute="leading" secondItem="Fho-Xu-ami" secondAttribute="leading" constant="20" id="1T8-YK-Tb0"/>
-                            <constraint firstItem="OQx-ZG-vW8" firstAttribute="top" secondItem="KgG-kK-QTS" secondAttribute="top" id="8Nm-rO-DvR"/>
-                            <constraint firstItem="UjJ-RZ-Urv" firstAttribute="top" secondItem="OQx-ZG-vW8" secondAttribute="bottom" constant="30" id="WkJ-OM-DlK"/>
-                            <constraint firstItem="Fho-Xu-ami" firstAttribute="bottom" secondItem="UjJ-RZ-Urv" secondAttribute="bottom" constant="20" id="hsM-1S-XbG"/>
-                            <constraint firstItem="Fho-Xu-ami" firstAttribute="trailing" secondItem="UjJ-RZ-Urv" secondAttribute="trailing" constant="20" id="i6Y-I4-rBi"/>
-                            <constraint firstItem="OQx-ZG-vW8" firstAttribute="leading" secondItem="KgG-kK-QTS" secondAttribute="leading" id="woI-02-iyD"/>
-                            <constraint firstAttribute="trailing" secondItem="OQx-ZG-vW8" secondAttribute="trailing" id="xg3-aq-HOP"/>
+                            <constraint firstItem="UjJ-RZ-Urv" firstAttribute="leading" secondItem="KgG-kK-QTS" secondAttribute="leading" constant="20" id="OR4-1i-1uo"/>
+                            <constraint firstItem="UjJ-RZ-Urv" firstAttribute="top" secondItem="KgG-kK-QTS" secondAttribute="top" constant="74" id="ULW-lZ-Vsc"/>
+                            <constraint firstAttribute="bottom" secondItem="UjJ-RZ-Urv" secondAttribute="bottom" constant="20" id="cI6-0r-NOs"/>
+                            <constraint firstAttribute="trailing" secondItem="UjJ-RZ-Urv" secondAttribute="trailing" constant="20" id="z5S-gy-3ZA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fho-Xu-ami"/>
                     </view>

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,10 +38,22 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoD-Lh-ClC">
+                        <rect key="frame" x="162" y="8" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="ZQD-sl-GG1"/>
+                            <constraint firstAttribute="height" constant="30" id="cz0-Jx-SQv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="aoD-Lh-ClC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="PyL-SQ-frz"/>
+                <constraint firstAttribute="trailing" secondItem="aoD-Lh-ClC" secondAttribute="trailing" constant="8" id="aWs-h5-BOC"/>
                 <constraint firstItem="xt9-W5-yeB" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="qI7-ig-E46"/>
                 <constraint firstItem="xt9-W5-yeB" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="yx8-52-qjv"/>
             </constraints>
@@ -51,9 +61,10 @@
             <size key="customSize" width="200" height="200"/>
             <connections>
                 <outlet property="dateCreatedLabel" destination="zCP-q2-7lX" id="MDr-fk-dnV"/>
+                <outlet property="editingMarkerLabel" destination="aoD-Lh-ClC" id="zJ2-Yi-20K"/>
                 <outlet property="fileNameLabel" destination="egj-jE-MQ1" id="ou5-GM-pPQ"/>
             </connections>
-            <point key="canvasLocation" x="268.80000000000001" y="224.88755622188907"/>
+            <point key="canvasLocation" x="249.59999999999999" y="224.88755622188907"/>
         </collectionViewCell>
     </objects>
 </document>

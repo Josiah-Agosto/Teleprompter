@@ -29,5 +29,4 @@ class SecondViewController: UIViewController, UITextViewDelegate {
             destination.fileNameText = fileName
         }
     }
-    
 }

@@ -12,5 +12,21 @@ class ContentViewCell: UICollectionViewCell {
     // Outlets
     @IBOutlet weak var fileNameLabel: UILabel!
     @IBOutlet weak var dateCreatedLabel: UILabel!
+    @IBOutlet weak var editingMarkerLabel: UILabel!
     
+    var isInEditingMode: Bool = false {
+        didSet {
+            editingMarkerLabel.isHidden = !isInEditingMode
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isInEditingMode {
+                editingMarkerLabel.layer.cornerRadius = 15
+                editingMarkerLabel.layer.borderWidth = 1
+                editingMarkerLabel.backgroundColor = isSelected ? UIColor.green : UIColor.clear
+            }
+        }
+    }
 }

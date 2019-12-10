@@ -325,9 +325,6 @@ class LastViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlay
         saveAudioFiles()
         saveFiles()
         self.navigationController?.popToRootViewController(animated: true)
-//        if let destination = storyboard?.instantiateViewController(withIdentifier: "HomeVC") as? HomeViewController {
-//            destination.homeCollectionView.reloadData()
-//        }
     }
 
     // Core Data Stuff
@@ -351,11 +348,3 @@ class LastViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlay
     }
     
 } // Class End
-
-
-
-extension LastViewController: CollectionReloadingProtocol {
-    func reloadCollection() {
-        
-    }
-}
